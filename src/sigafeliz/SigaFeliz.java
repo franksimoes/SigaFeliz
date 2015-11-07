@@ -42,21 +42,24 @@ public class SigaFeliz {
                     if (assento >= 1 && assento <= 24) {
                         System.out.println("Digite C para assento no corredor ou J para assento na janela");
                         tipoassento = entradaopc.next().charAt(0);
-                        //Valida o tipo de poltrona. Caso seja inválido, será pedido que se insira novamente o tipo até ser inserido C ou J. 
-                        while (tipoassento != 'C' && tipoassento != 'J') {
+                        //Valida o tipo de poltrona. Caso seja inválido, será pedido que se insira novamente o tipo até ser inserido C ou J.
+                        // Revisão 1 - acrescido opções de 'c' para corredor e 'j' janela
+                        while (tipoassento != 'C' && tipoassento != 'J' && tipoassento != 'c' && tipoassento != 'j') {
                             System.out.println("Tipo de poltrona inválido. Digite C para assento no corredor ou J para assento na janela");
                             tipoassento = entradaopc.next().charAt(0);
                         }
                         //Bloco para verificar se foi escolhido janela ou corredor. Respectivamente verifica a disponibilidade dos assentos e 
                         //seta os valores 1 nos vetores caso a poltrona esteja livre. 
-                        if (tipoassento == 'J') {
+                        // Revisão 1 - tratamento diferenciado para suportar ambas opções para janela
+                        if (tipoassento == 'J' || tipoassento == 'j') {
                             if (janela[assento - 1] == 1) {
                                 System.out.println("Poltrona ocupada");
                             } else {
                                 janela[assento - 1] = 1;
                                 System.out.println("Venda efetivada");
                             }
-                        } else {
+                        // Revisão 1 - tratamento diferenciado para suportar ambas opções para corredor                            
+                        } else if (tipoassento == 'C' || tipoassento == 'c') {
                             if (corredor[assento - 1] == 1) {
                                 System.out.println("Poltrona ocupada");
                             } else {
