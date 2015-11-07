@@ -9,6 +9,10 @@ package sigafeliz;
    Desenvolvido por Arsiclaro Rodrigues para o projeto interdisciplinar da faculdade Anhembi Morumbi 
    1º semestre GTI - 2015
 */
+
+/* Revisão e correção para atender as correções depois dos testes da Revisão 1
+   revisado por Francisco Simões Filho
+*/
 import java.util.Scanner;
 
 public class SigaFeliz {
