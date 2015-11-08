@@ -32,8 +32,9 @@ public class SigaFeliz {
         assento = 0;
       
         //O programa vai rodar até o usuário escolher a OPÇÃO 3 do menu inicial
-        while ( !opcao.equals("3")) {
-            
+        // Revisão 1 - tratamento das opções de Menu como String para facilitar
+        // erro de digitação de valores alfanuméricos.
+        while ( !opcao.equals("3")) {            
             //Exibição do menu inicial
             System.out.println("----------------------------");
             System.out.println("MENU - VENDA DE PASSAGENS \n1. Vender passagem \n2. Mapa de ocupacao \n3. Encerrar ");
@@ -44,9 +45,17 @@ public class SigaFeliz {
                 System.out.println("Por favor digite o número da poltrona desejada");
                 //A variável assento foi iniciada como 0. Enquanto ela estiver nesse valor ou o usuário digitar uma opção de poltrona fora do range,
                 //o bloco continuará a ser executado. 
-              //if (entradaopc.hasNextInt()) {    
                 while (assento < 1 || assento > 24) {
-                    assento = entradaopc.nextInt();
+                    //assento = entradaopc.nextInt();
+                    // Revisão 1 - Tratado erro quando usuário digita valores alfanuméricos
+                    try {
+                        // dentro de um bloco "Try", tenta converter o valor digitado para inteiro
+                        // em caso de alfanumerico é apresentada a mensagem de erro diferenciada.
+                        assento = Integer.parseInt(entradaopc.next().trim());
+                    }
+                    catch (NumberFormatException nfe) {  
+                        System.out.println("*** Somente serão aceitos valores numéricos. ***");
+                    }
                     //Valida a entrada do usuário. Se estiver dentro do range 1~24, continua o programa, pedindo o tipo do assento
                     if (assento >= 1 && assento <= 24) {
                         System.out.println("Digite C para assento no corredor ou J para assento na janela");
@@ -86,6 +95,8 @@ public class SigaFeliz {
                 assento = 0;
             //OPÇÃO 2 - MAPA DE ASSENTOS    
             } else if (opcao.equals("2")) {
+                System.out.println("\n");
+                System.out.println("================================");
                 System.out.println("JANELA              CORREDOR");
                 for (i = 0; i < 24; i++) {
                     //Variável de escopo local somente para output dos dados na mesma linha. As linhas comentadas funcionam, mas exibiriam
@@ -107,7 +118,9 @@ public class SigaFeliz {
                     }
                     System.out.println((i+1)+ " " + posicao1 + "              " + (i+1) + " " + posicao2);
                 }
-            //OPÇÃO 3 - FIM DO PROGRAMA
+                System.out.println("================================");
+                System.out.println("\n");
+                //OPÇÃO 3 - FIM DO PROGRAMA
             } else if (opcao.equals("3")) {
                 System.exit(0);
             } else {
